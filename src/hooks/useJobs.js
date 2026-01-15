@@ -20,5 +20,11 @@ export default function useJobs() {
     setJobs((prev) => prev.filter((job) => job.id !== id));
   };
 
-  return { jobs, addJob, deleteJob };
+  const updateJob = (updatedJob) => {
+    setJobs((prev) =>
+      prev.map((job) => (job.id === updatedJob.id ? updatedJob : job))
+    );
+  };
+
+  return { jobs, addJob, updateJob, deleteJob };
 }

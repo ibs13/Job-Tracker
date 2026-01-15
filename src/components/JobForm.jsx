@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 
-const JobForm = ({ onAddJob }) => {
-  const [company, setCompany] = useState("");
-  const [role, setRole] = useState("");
+const JobForm = ({ onAddJob, editingJob, onUpdateJob, onCancelEdit }) => {
+  const [company, setCompany] = useState(editingJob?.company ?? "");
+  const [role, setRole] = useState(editingJob?.role ?? "");
+  const [status, setStatus] = useState(editingJob?.status ?? "Applied");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAddJob({
-      id: crypto.randomUUID(),
-      company,
-      role,
-      status: "Applied",
-    });
+    if (editingJob) {
+      onUpdateJob({
+        ...editingJob,
+        company,
+        role,
+        status,
+      });
+      onCancelEdit();
+    } else {
+      onAddJob({
+        id: crypto.randomUUID(),
+        company,
+        role,
+        status,
+      });
+    }
 
     setCompany("");
     setRole("");
+    setStatus("Applied");
   };
 
   return (
@@ -33,7 +45,19 @@ const JobForm = ({ onAddJob }) => {
           value={role}
           onChange={(e) => setRole(e.target.value)}
         />
-        <button className="bg-blue-600 text-white px-4 py-2">Add Job</button>
+        <select
+          className="w-full border p-2"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option>Applied</option>
+          <option>Interview</option>
+          <option>Offer</option>
+          <option>Rejected</option>
+        </select>
+        <button className="bg-blue-600 text-white px-4 py-2">
+          {editingJob ? "Update Job" : "Add Job"}
+        </button>
       </form>
     </>
   );
