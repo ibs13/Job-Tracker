@@ -17,6 +17,13 @@ This project focuses on mastering React fundamentals through real-world patterns
 - Vite
 - Tailwind CSS
 
+## Architecture Overview
+
+- `App.jsx` manages high-level UI state and orchestration
+- `useJobs` custom hook encapsulates job data logic and persistence
+- Presentational components (`JobList`, `JobItem`, `StatusBadge`) focus on rendering
+- Forms are controlled components reused for create and edit flows
+
 ## Key React Concepts Applied
 
 - Component-driven architecture
@@ -37,6 +44,28 @@ This project focuses on mastering React fundamentals through real-world patterns
 ## Live Demo
 
 https://job-tracker-xyz.vercel.app
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](./screenshots/empty-state.png)
+
+### Add Job
+
+![Add Job](./screenshots/add-job.png)
+
+### Edit Jobs
+
+![Edit Job](./screenshots/edit-job.png)
+
+### View All Applied job
+
+![All Job](./screenshots/view-all-applied-job.png)
+
+### Filter Jobs
+
+![Filter Job](./screenshots/filtered-status.png)
 
 ## Getting Started
 
